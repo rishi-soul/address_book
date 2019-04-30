@@ -2,8 +2,10 @@
 Address Book API
 Installation:
 Clone the git repository / download and extract the .zip file.  Download and install elasticsearch from https://www.elastic.co/downloads/elasticsearch
+
 After downloading Elastic Search execute
 >{PathToElasticSearchFolder}/bin/elasticsearch.bat
+
 To Generate Jar
 >mvn install
 To Execute

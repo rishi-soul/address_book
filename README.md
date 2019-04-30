@@ -8,6 +8,7 @@ After downloading Elastic Search execute
 
 To Generate Jar
 >mvn install
+
 To Execute
 >java -cp address_book-0.0.1-SNAPSHOT.jar org.address.book.controller.AddressBookController
 

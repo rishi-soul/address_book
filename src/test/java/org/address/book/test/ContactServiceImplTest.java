@@ -22,18 +22,18 @@ import org.mockito.runners.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class ContactServiceImplTest {
 
-	private static ContactServiceImpl mockedBookDAL;
+	private static ContactServiceImpl contactService;
 	private static ContactInfo contact1;
 	private static ContactInfo contact2;
 
 	@BeforeClass
 	public static void setUp() throws ContactException {
-		mockedBookDAL = mock(ContactServiceImpl.class);
+		contactService = mock(ContactServiceImpl.class);
 		contact1 = new ContactInfo("John", "abc@gmail.com", "3452341234", "California");
 		contact2 = new ContactInfo("Albert", "fgh@gmail.com", "0987654321", "Texas");
 
-		when(mockedBookDAL.getContact("John")).thenReturn(contact1);
-		when(mockedBookDAL.getContact("1", "2", "name:John"))
+		when(contactService.getContact("John")).thenReturn(contact1);
+		when(contactService.getContact("1", "2", "name:John"))
 				.thenReturn((Collection<ContactInfo>) Arrays.asList(contact1));
 
 	}
@@ -41,7 +41,7 @@ public class ContactServiceImplTest {
 	@Test
 	public void testGetContact() throws Exception {
 
-		ContactInfo contactInfo = mockedBookDAL.getContact("John");
+		ContactInfo contactInfo = contactService.getContact("John");
 		assertEquals("John", contactInfo.getName());
 		assertEquals("abc@gmail.com", contactInfo.getEmail());
 		assertEquals("3452341234", contactInfo.getPhoneNumber());
@@ -52,19 +52,19 @@ public class ContactServiceImplTest {
 	@Test
 	public void testGetAllContact() throws Exception {
 
-		Collection<ContactInfo> contactInfo = mockedBookDAL.getContact("1", "2", "name:John");
+		Collection<ContactInfo> contactInfo = contactService.getContact("1", "2", "name:John");
 		assertEquals(1, contactInfo.size());
 
 	}
 
 	@Test
 	public void testeditContact() throws Exception {
-		mockedBookDAL.editContact(contact1, "John");
+		contactService.editContact(contact1, "John");
 	}
 
 	@Test
 	public void testaddContact() throws Exception {
-		mockedBookDAL.addContact(contact1);
+		contactService.addContact(contact1);
 	}
 
 }

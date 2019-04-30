@@ -63,6 +63,10 @@ public class ContactServiceImpl implements ContactService {
 	public void addContact(ContactInfo contactInfo) throws ContactException {
 
 		ContactInfo contact = validation.validateContact(contactInfo);
+		ContactInfo checkExisting = getContact(contact.getName());
+		if(checkExisting !=null) {
+			throw new ContactException("User already Exists");
+		}
 
 		contactInfo.setId(UUID.randomUUID().toString());
 
